@@ -1,0 +1,99 @@
+#!/usr/bin/python3
+
+"""
+Convert any file/url to PDF.
+
+Usage:
+    topdf <path>...
+"""
+
+# Used to get command line arguments
+from docopt import docopt
+
+# Used to extract out filename from a url
+from urllib.parse import urlparse, unquote
+from os.path import splitext, basename
+
+# Used to run pandoc
+from subprocess import call
+
+# Path to pandoc
+PANDOC_BIN = "/usr/bin/pandoc"
+
+# Convert input extensions to pandoc formats
+FORMATS = {
+    "md": "markdown",
+    "tex": "latex",
+    "rst": "rst",
+    "html": "html",
+}
+
+
+# FIXME: A bit too much?
+def real_unquote(inp):
+    """ Actually, really, unquote a string. """
+    while '%' in inp:
+        inp = unquote(inp)
+    return inp
+
+
+# Input path can be a URL or a path to a local file
+def local_file(file_path):
+    # Extract file name
+    parsed = urlparse(file_path)
+    file_name, file_ext = splitext(basename(parsed.path))
+
+    # If the argument is a URL
+    if (not file_ext) and (parsed.scheme != ""):
+        file_ext = ".html"
+
+    # TODO: What if a name can not be extracted?
+    # Ask name input? Show continue question?
+
+    # Use LibreOffice to convert PPT to PDF
+    if file_ext in [".ppt", ".pptx", ".doc", ".docx"]:
+        command = [
+            "libreoffice",
+            "--headless",
+            "--convert-to",
+            "pdf",
+            file_path
+        ]
+        print(" ".join(command))
+        call(command)
+        return
+
+    # Output is a PDF file with same name
+    output_file = real_unquote(file_name) + ".pdf"
+
+    # Build command & it's parameters
+    command = [
+        PANDOC_BIN,
+        "-s",
+        "--toc",
+        "--latex-engine", "xelatex",
+        # "-V", "geometry:margin=1in",
+        # "-V", "fontsize=18pt",
+        "-f", FORMATS.get(file_ext[1:], "markdown"),
+        "-o", output_file,
+        file_path,
+    ]
+
+    # Build
+    # print("Generating: %s" % output_file)
+    print(" ".join(command))
+    call(command)
+
+    # View
+    # if sys.platform == 'linux':
+    #     call(["xdg-open", output_file])
+    # else:
+    #     import os
+    #     os.startfile(file)
+
+if __name__ == '__main__':
+
+    args = docopt(__doc__, options_first=True, version='topdf 0.7')
+
+    for path in args['<path>']:
+        local_file(path)
