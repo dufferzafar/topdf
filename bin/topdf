@@ -4,7 +4,10 @@
 Convert any file to PDF
 
 Usage:
-    topdf <path>...
+    topdf [options] <path>...
+
+Options:
+    --open               Open the pdf file in associated application
 """
 
 from docopt import docopt
@@ -15,4 +18,7 @@ if __name__ == '__main__':
     args = docopt(__doc__, options_first=True, version='topdf 0.1')
 
     for path in args['<path>']:
-        topdf.topdf(path)
+        topdf.topdf(
+            path=path,
+            open_pdf=args['--open'],
+        )
