@@ -15,12 +15,16 @@ class PandocEngine():
         return path.endswith(tuple(_formats))
 
     @staticmethod
-    def make_pdf(path):
-        file_name, file_ext = os.path.splitext(os.path.basename(path))
+    def make_pdf(path, format=None, outputfile=None):
+        if not outputfile:
+            file_name, file_ext = os.path.splitext(os.path.basename(path))
+            outputfile = file_name + ".pdf",
+
         return pypandoc.convert(
             path,
+            format=format,
             to='pdf',
-            outputfile=file_name + ".pdf",
+            outputfile=outputfile,
             extra_args=[
                 "--toc",
                 "--latex-engine", "xelatex",
