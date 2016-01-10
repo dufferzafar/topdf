@@ -16,7 +16,9 @@ class LibreOfficeEngine():
     @staticmethod
     def make_pdf(path):
         command = ["libreoffice", "--headless", "--convert-to", "pdf", path]
-        subprocess.call(command)
+
+        with open(os.devnull, "w") as devnull:
+            subprocess.call(command, stdout=devnull)
 
         file_name, file_ext = os.path.splitext(os.path.basename(path))
         return file_name + ".pdf"
