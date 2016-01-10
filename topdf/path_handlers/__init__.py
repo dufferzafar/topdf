@@ -1,4 +1,5 @@
 from .local_file import LocalFileHandler
+from .stackoverflow import StackOverflowAnswerHandler
 
 
 def list_handlers():
