@@ -17,7 +17,7 @@ class PandocEngine():
     @staticmethod
     def make_pdf(path):
         file_name, file_ext = os.path.splitext(os.path.basename(path))
-        pypandoc.convert(
+        return pypandoc.convert(
             path,
             to='pdf',
             outputfile=file_name + ".pdf",

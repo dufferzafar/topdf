@@ -1,6 +1,7 @@
 import os
 
 from topdf.pdf_engines.pandoc import PandocEngine
+from topdf.pdf_engines.libreoffice import LibreOfficeEngine
 
 
 class LocalFileHandler():
@@ -16,4 +17,6 @@ class LocalFileHandler():
         file_name, file_ext = os.path.splitext(os.path.basename(path))
 
         if PandocEngine.can_handle(file_ext):
-            PandocEngine.make_pdf(path)
+            return PandocEngine.make_pdf(path)
+        elif LibreOfficeEngine.can_handle(file_ext):
+            return LibreOfficeEngine.make_pdf(path)
