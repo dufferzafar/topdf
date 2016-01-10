@@ -14,9 +14,7 @@ class LocalFileHandler():
 
     @staticmethod
     def make_pdf(path):
-        file_name, file_ext = os.path.splitext(os.path.basename(path))
-
-        if PandocEngine.can_handle(file_ext):
+        if PandocEngine.can_handle(path):
             return PandocEngine.make_pdf(path)
-        elif LibreOfficeEngine.can_handle(file_ext):
+        elif LibreOfficeEngine.can_handle(path):
             return LibreOfficeEngine.make_pdf(path)

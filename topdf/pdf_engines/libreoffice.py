@@ -10,8 +10,8 @@ class LibreOfficeEngine():
     """ Uses libreoffice to convert files to pdfs. """
 
     @staticmethod
-    def can_handle(file_ext):
-        return file_ext[1:] in _formats
+    def can_handle(path):
+        return path.endswith(tuple(_formats))
 
     @staticmethod
     def make_pdf(path):
