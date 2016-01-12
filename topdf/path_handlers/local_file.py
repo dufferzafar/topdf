@@ -8,12 +8,12 @@ class LocalFileHandler():
 
     """ Handles paths to local files. """
 
-    @staticmethod
-    def can_handle(path):
+    @classmethod
+    def can_handle(cls, path):
         return os.path.isfile(path)
 
-    @staticmethod
-    def make_pdf(path):
+    @classmethod
+    def make_pdf(cls, path):
         if PandocEngine.can_handle(path):
             return PandocEngine.make_pdf(path)
         elif LibreOfficeEngine.can_handle(path):

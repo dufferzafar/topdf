@@ -2,19 +2,19 @@
 import os
 import subprocess
 
-_formats = ["ppt", "pptx", "doc", "docx"]
-
 
 class LibreOfficeEngine():
 
     """ Uses libreoffice to convert files to pdfs. """
 
-    @staticmethod
-    def can_handle(path):
-        return path.endswith(tuple(_formats))
+    valid_formats = ["ppt", "pptx", "doc", "docx"]
 
-    @staticmethod
-    def make_pdf(path):
+    @classmethod
+    def can_handle(cls, path):
+        return path.endswith(tuple(cls.valid_formats))
+
+    @classmethod
+    def make_pdf(cls, path):
         command = ["libreoffice", "--headless", "--convert-to", "pdf", path]
 
         with open(os.devnull, "w") as devnull:

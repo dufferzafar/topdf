@@ -2,20 +2,20 @@
 import os
 import pypandoc
 
-_formats = ["docx", "epub", "html", "json",
-            "tex", "md", "opml", "rst"]
-
 
 class PandocEngine():
 
     """ Uses pandoc to convert . """
 
-    @staticmethod
-    def can_handle(path):
-        return path.endswith(tuple(_formats))
+    valid_formats = ["docx", "epub", "html", "json",
+                     "tex", "md", "opml", "rst"]
 
-    @staticmethod
-    def make_pdf(path, format=None, outputfile=None):
+    @classmethod
+    def can_handle(cls, path):
+        return path.endswith(tuple(cls.valid_formats))
+
+    @classmethod
+    def make_pdf(cls, path, format=None, outputfile=None):
         if not outputfile:
             file_name, file_ext = os.path.splitext(os.path.basename(path))
             outputfile = file_name + ".pdf",
