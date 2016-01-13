@@ -18,7 +18,7 @@ class PandocEngine():
     def make_pdf(cls, path, format=None, outputfile=None):
         if not outputfile:
             file_name, file_ext = os.path.splitext(os.path.basename(path))
-            outputfile = file_name + ".pdf",
+            outputfile = file_name + ".pdf"
 
         return pypandoc.convert(
             path,
