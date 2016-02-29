@@ -4,17 +4,39 @@ topdf
 
 Convert anything to a beautiful PDF.
 
+usage
+-----
+
+Although I'm a command line fan and love exploring options that my favorite tools have; with ``topdf`` I'm going to follow the 'sane defaults' philosophy and will aim to keep options to a bare minimum.
+
+Github Readmes::
+
+    $ topdf https://github.com/something/something/meri/jaan.md
+
+Stack Overflow Answers::
+
+    $ topdf
+
+Of course it supports local files::
+
+    $ topdf ~/Documents/{*.pptx,*.docx}
+
 install
 -------
 
+Now comes the hardest part - I started writing ``topdf`` as a little wrapper around the existing tools I had, so I didn't think much about what the installation process would be like, which is why it is currently a mess.
+
 **dependencies**
 
-* `pandoc`
-* `latex`
+These dependencies are flexible, so you don't really require them for ``topdf`` to start, they'll only be needed when you perform conversions on a particular format. For eg. Conversion from Github readmes currently uses the `GitPrint <http://gitprint.com/>`_ website and won't require any existing tool (apart from an internet connection, of course.)
 
-**package:**
+* ``libreoffice`` - needed for docx, pptx etc. files
+* ``pandoc`` - needed for markdown, html etc. files
+* ``latex`` - required by pandoc!
 
-`pip install topdf`
+**package:**::
+
+  $ pip install topdf
 
 todo
 ----
@@ -68,7 +90,14 @@ engines
 * QtWebkitEngine
 
   * requires: qt4, pyqt4
+  * will allow us to convert arbitrary webpages to pdf
   * use python adblocker to block all sorts of ads while opening webpage
+
+* MSOfficeEngine
+
+  * powerpoint, word
+  * will allow us to support Windows
+  * might need stuff like helper `VBS <http://superuser.com/questions/641471/how-can-i-automatically-convert-powerpoint-to-pdf>`_ or `BAS <https://github.com/oleksiykovtun/Word-Export-to-PDF>`_ files or an `external tool <https://officetopdf.codeplex.com/documentation>`_
 
 * NodeMarkdownPDFEngine
 
@@ -85,6 +114,16 @@ engines
 
   http://kevin.deldycke.com/uploads/2012/readme-gimli.pdf
 
+* Use unoconv for some stuff?
+
+config
+~~~~~~
+
+Once we have a lot of handlers and engines, it might make sense to support some sort of configuration file (perhaps YAML based?) that will come with 'sane defaults' but will allow users to tweak topdf behaviour according to their needs.
+
+It'll have stuff like which engine to prefer while converting a URI that can be converted by multiple engines. For eg. let's say you want to convert a Github readme file to PDF, you can either do so by using the `GitPrintEngine`, or you might want to first download the markdown of the Readme and then use the `PandocEngine`.
+
+The config file might also store stuff like extra arguments to pass to `pandoc`, perhaps to specify a tex template to use while converting to PDF.
 
 others
 ~~~~~~
@@ -107,3 +146,5 @@ others
 .. random links
 .. https://github.com/kxxoling/markdown2pdf/
 .. http://www.xhtml2pdf.com/
+
+.. Register topdf organization on Github. Move geeks-pdf, codechef-pdf, topdf there.
