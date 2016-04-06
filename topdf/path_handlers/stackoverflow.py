@@ -9,11 +9,12 @@ from topdf.pdf_engines.pandoc import PandocEngine
 
 class StackOverflowAnswerHandler():
 
-    """ Handles urls to stackoverflow answers. """
+    """Handles urls to stackoverflow answers."""
 
     API_URL = ("https://api.stackexchange.com/2.2/answers/%s"
                "?site=%s&filter=!GeEyUcJFJeD0Q")
 
+    # TODO: Add support for other StackExchange sites
     SO_REGEX = re.compile(r"http:\/\/(stackoverflow)\.com\/a\/(\d+)")
 
     @classmethod
@@ -22,7 +23,7 @@ class StackOverflowAnswerHandler():
 
     @classmethod
     def make_pdf(cls, url):
-        """ Fetches raw markdown of an answer and convert it to PDF. """
+        """Fetches raw markdown of an answer and convert it to PDF."""
 
         m = re.match(cls.SO_REGEX, url)
         response = requests.get(cls.API_URL % (m.group(2), m.group(1)))

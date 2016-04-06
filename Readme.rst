@@ -11,7 +11,7 @@ Although I'm a command line fan and love exploring options that my favorite tool
 
 Github Readmes::
 
-    $ topdf https://github.com/something/something/meri/jaan.md
+    $ topdf https://github.com/user/repo/Readme.md
 
 Stack Overflow Answers::
 
