@@ -1,5 +1,6 @@
-from .local_file import LocalFileHandler
-from .stackoverflow import StackOverflowAnswerHandler
+from topdf.path_handlers.local_file import LocalFileHandler
+from topdf.path_handlers.stackoverflow import StackOverflowAnswerHandler
+from topdf.path_handlers.github_readme import GithubReadmeHandler
 
 
 def list_handlers():
