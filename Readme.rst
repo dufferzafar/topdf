@@ -51,6 +51,14 @@ I've only tested topdf on Ubuntu 14.04 / 15.10 which had libreoffice, pandoc, la
 * need to test out windows, mac osx support
 * topdf tries to be completely generic, so writing a new engine for these platforms shouldn't be too hard.
 
+* stitch all code files in a git repository (or a generic folder) into PDF ``topdf git://home/dufferzafar/dev/topdf/*.py``
+
+windows
+~~~~~~~
+
+* test out PyInstaller for Windows
+* PyQt based GUI?
+
 handlers
 ~~~~~~~~
 
@@ -79,6 +87,11 @@ handlers
 engines
 ~~~~~~~
 
+* MarkdownEngine
+  * Pure Python Markdown to PDF
+  * Should work on Windows too
+  * Integrate with Github markdowns
+
 * GitPrintEngine
 
   * requires: nothing
@@ -95,7 +108,7 @@ engines
 
 * MSOfficeEngine
 
-  * powerpoint, word
+  * requires: powerpoint, word
   * will allow us to support Windows
   * might need stuff like helper `VBS <http://superuser.com/questions/641471/how-can-i-automatically-convert-powerpoint-to-pdf>`_ or `BAS <https://github.com/oleksiykovtun/Word-Export-to-PDF>`_ files or an `external tool <https://officetopdf.codeplex.com/documentation>`_
 
@@ -148,3 +161,5 @@ others
 .. http://www.xhtml2pdf.com/
 
 .. Register topdf organization on Github. Move geeks-pdf, codechef-pdf, topdf there.
+
+http://crypto.stackexchange.com/a/18614/24075
