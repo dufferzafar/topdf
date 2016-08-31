@@ -1,10 +1,11 @@
 import os
 
+from topdf.path_handlers.base import BaseHandler
 from topdf.pdf_engines.pandoc import PandocEngine
 from topdf.pdf_engines.libreoffice import LibreOfficeEngine
 
 
-class LocalFileHandler():
+class LocalFile(BaseHandler):
 
     """ Handles paths to local files. """
 

@@ -4,10 +4,11 @@ from tempfile import NamedTemporaryFile
 
 import requests
 
+from topdf.path_handlers.base import BaseHandler
 from topdf.pdf_engines.pandoc import PandocEngine
 
 
-class StackOverflowAnswerHandler():
+class StackOverflowAnswer(BaseHandler):
 
     """Handles urls to stackoverflow answers."""
 
@@ -31,6 +32,8 @@ class StackOverflowAnswerHandler():
 
         with NamedTemporaryFile(prefix='topdf_so_', delete=False) as mdfile:
             mdfile.write(body)
+
+        # TODO: Now that we have a markdown file, we could just invoke a MD to PDF converter here?
 
         outputfile = 'StackOverflow - %s.pdf' % m.group(2)
         try:
