@@ -1,16 +1,14 @@
-from topdf.path_handlers.local_file import LocalFileHandler
-from topdf.path_handlers.stackoverflow import StackOverflowAnswerHandler
-from topdf.path_handlers.github_readme import GithubReadmeHandler
+from topdf.path_handlers.base import BaseHandler
+
+import topdf.path_handlers.generic_url
+import topdf.path_handlers.github_readme
+import topdf.path_handlers.local_file
+import topdf.path_handlers.reddit
+import topdf.path_handlers.stackoverflow
 
 
 def list_handlers():
-    """ Return a list of an instance of every supported provider. """
-
-    return {
-        name: klass()
-        for name, klass in globals().items()
-        if name.endswith('Handler')
-    }
+    return BaseHandler.__subclasses__()
 
 
 if __name__ == '__main__':
