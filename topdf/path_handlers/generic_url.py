@@ -9,12 +9,11 @@ class GenericURL(BaseHandler):
     """ Handles any arbitrary URL. """
 
     # Minimum priority so that all other handlers get matched first.
-    priority = 0
+    priority = -1
 
     @classmethod
     def can_handle(cls, path):
         parsed = urllib.parse.urlsplit(path)
-        print(parsed)
         return parsed.scheme.startswith("http")
 
     @classmethod
