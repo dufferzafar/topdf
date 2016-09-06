@@ -1,5 +1,27 @@
 import os
-import pypandoc
+import subprocess
+
+
+# Based on pypandoc's '_convert_input' function
+def pandoc(source, dest, format=None):
+    # _ensure_pandoc_path()
+
+    args = ["pandoc", source]
+
+    if format:
+        args.extend(["--from="+format])
+
+    args.extend([
+        "--to=latex",
+        "--output="+dest,
+        "--toc",
+        "--latex-engine", "xelatex",
+    ])
+
+    # print(" ".join(args))
+    subprocess.call(args)
+
+    return dest
 
 
 class PandocEngine():
@@ -19,13 +41,4 @@ class PandocEngine():
             file_name, file_ext = os.path.splitext(os.path.basename(path))
             outputfile = file_name + ".pdf"
 
-        return pypandoc.convert(
-            path,
-            format=format,
-            to='pdf',
-            outputfile=outputfile,
-            extra_args=[
-                "--toc",
-                "--latex-engine", "xelatex",
-            ]
-        )
+        return pandoc(path, outputfile, format)
