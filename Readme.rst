@@ -7,24 +7,27 @@ Convert anything to a beautiful PDF.
 usage
 -----
 
-Although I'm a command line fan and love exploring options that my favorite tools have; with ``topdf`` I'm going to follow the 'sane defaults' philosophy and will aim to keep options to a bare minimum.
-
-Github Readmes::
+Github Readme::
 
     $ topdf https://github.com/user/repo/Readme.md
 
-Stack Overflow Answers::
+Stack Overflow Answer::
 
     $ topdf
 
-Of course it supports local files::
+Local files::
 
     $ topdf ~/Documents/{*.pptx,*.docx}
+
+``topdf`` tries to follow the 'sane defaults' philosophy and tries to keep options to a bare minimum.
+
 
 install
 -------
 
-Now comes the hardest part - I started writing ``topdf`` as a little wrapper around the existing tools I had, so I didn't think much about what the installation process would be like, which is why it is currently a mess.
+I started writing ``topdf`` as a little wrapper around the existing tools I had, so I didn't think much about what the installation process would be like, which is why it is currently a mess.
+
+I don't have much experience with deploying applications, so the installation procedure is not as straightforward as I'd like it to be. Any help in this area is really appreciated.
 
 **dependencies**
 
@@ -41,15 +44,20 @@ These dependencies are flexible, so you don't really require them for ``topdf`` 
 todo
 ----
 
-There's still a ton of things that need to be added but I'll only be able to do this If I get help from other people (mostly for adding support for other platforms.)
+There's still a ton of things that need to be added but I don't think I'll be able to do it all on my own (adding support for other platforms especially.)
+
+cli
+~~~
+
+* `-O, --output` option to change output file
 
 platforms
 ~~~~~~~~~
 
-I've only tested topdf on Ubuntu 14.04 / 15.10 which had libreoffice, pandoc, latex, all installed. If you have that setup too, then *theoretically* it should just work fine on any platform, but if there's anything the theory has taught us, it's to never trust it without some experiments.
+I've only tested topdf on (K)ubuntu which had libreoffice, pandoc, latex, all installed. If you already have that setup, then *theoretically* it should just work fine on any platform, but if there's anything the theory has taught us, it's to never trust it without real experimentation.
 
-* need to test out windows, mac osx support
-* topdf tries to be completely generic, so writing a new engine for these platforms shouldn't be too hard.
+* needs testing on mac osx and windows
+* topdf tries to be completely generic, so writing new engines for these platforms shouldn't be too hard
 
 * stitch all code files in a git repository (or a generic folder) into PDF ``topdf git://home/dufferzafar/dev/topdf/*.py``
 
@@ -61,6 +69,10 @@ windows
 
 handlers
 ~~~~~~~~
+
+* Standard Input Handler
+
+  * Input text could be anything!
 
 * IPythonNotebook
 
