@@ -51,6 +51,9 @@ cli
 
 * `-O, --output` option to change output file
 
+* Allow user to select which PDF engine / Handler to use
+  - Probably via a curses menu
+
 platforms
 ~~~~~~~~~
 
@@ -111,6 +114,12 @@ engines
   * pdfs are good, but don't have table of contents
 
   https://gitprint.com/mshang/python-elevator-challenge/blob/master/README.md?download
+
+* CutyCapt Engine
+
+  * requires: Qt
+  * based on screenshotting the page
+  * PDFs are exactly the way the webpage looks
 
 * QtWebkitEngine
 
